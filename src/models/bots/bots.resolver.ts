@@ -9,6 +9,7 @@ import {
 import { User } from '../users/entities/user.entity';
 import { Bot } from './entities/bot.entity';
 import { BotsService } from './bots.service';
+import { CreateBotInput } from './dto/create-bot.input';
 
 @Resolver(() => Bot)
 export class BotsResolver {
@@ -22,8 +23,8 @@ export class BotsResolver {
   }
 
   @Mutation(() => Bot)
-  createBot(@Args('title') title: string, @Args('userId') userId: string) {
-    return this.botsService.createBot(title, userId);
+  createBot(@Args('newBotData') newBotData: CreateBotInput) {
+    return this.botsService.createBot(newBotData);
   }
 
   @ResolveField(() => [User])

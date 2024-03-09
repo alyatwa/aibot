@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { CreateUserInput } from './dto/create-user.input';
 
 @Injectable()
 export class UsersService {
@@ -10,8 +11,8 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  create(name: string) {
-    const user = this.usersRepository.create({ name, bots: [] });
+  create(newUser: CreateUserInput) {
+    const user = this.usersRepository.create(newUser);
     return this.usersRepository.save(user);
   }
 

@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, GraphQLISODateTime, ID, ObjectType } from '@nestjs/graphql';
 import { Bot } from 'src/models/bots/entities/bot.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -12,6 +12,9 @@ export class User {
   @Column()
   @Field()
   name: string;
+
+  @Field(() => GraphQLISODateTime)
+  createdAt!: Date;
 
   @OneToMany(() => Bot, (bot) => bot.user)
   @Field(() => [Bot])

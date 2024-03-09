@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, GraphQLISODateTime, ID, ObjectType } from '@nestjs/graphql';
 import { User } from 'src/models/users/entities/user.entity';
 import {
   Column,
@@ -16,8 +16,11 @@ export class Bot {
   id: string;
 
   @Column()
-  @Field()
+  @Field({ name: 'bot name', description: 'Bot name', nullable: false })
   name: string;
+
+  @Field(() => GraphQLISODateTime)
+  createdAt!: Date;
 
   @ManyToOne(() => User)
   @JoinColumn()
