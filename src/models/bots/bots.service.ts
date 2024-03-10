@@ -17,7 +17,7 @@ export class BotsService {
     return this.botsRepository.save(bot);
   }
 
-  findAllByAuthor(userId: string): Promise<Bot[]> {
+  findAllByUser(userId: string): Promise<Bot[]> {
     return this.botsRepository.find({
       where: {
         user: {
@@ -31,16 +31,16 @@ export class BotsService {
     return await this.botsRepository.find();
   }
 
-  async botUser(postId: string) {
-    const post = await this.botsRepository.findOne({
+  async botUser(botId: string) {
+    const bot = await this.botsRepository.findOne({
       where: {
-        id: postId,
+        id: botId,
       },
       relations: {
         user: true,
       },
     });
 
-    return post.user;
+    return bot.user;
   }
 }

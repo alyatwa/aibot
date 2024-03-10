@@ -7,9 +7,11 @@ import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BotsModule } from './models/bots/bots.module';
 import { UsersModule } from './models/users/users.module';
+import { TasksModule } from './models/tasks/tasks.module';
 
 @Module({
   imports: [
+    TasksModule,
     BotsModule,
     UsersModule,
     TypeOrmModule.forRoot({
